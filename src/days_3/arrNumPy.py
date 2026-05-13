@@ -37,6 +37,9 @@ class arrNumPy:
         # Standart sapma hesaplar.
         print(arr.std())
         
+        # Karekök
+        print(np.sqrt(arr))
+        
         
         
 objNumPy = arrNumPy()
