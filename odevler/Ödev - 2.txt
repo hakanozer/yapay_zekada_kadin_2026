@@ -1,0 +1,165 @@
+ÖDev-2
+
+
+Kullanıcının girdiği bir sayı listesini NumPy array’e dönüştüren ve aşağıdaki bilgileri ekrana yazdıran bir Python programı yazınız:
+
+
+Toplam eleman sayısı
+
+
+Ortalama
+
+
+En büyük değer
+
+
+Standart sapma
+
+
+Karekök değerleri
+
+
+
+
+Product isminde bir sınıf oluşturunuz.
+Bu sınıfta aşağıdaki metotlar bulunsun:
+
+
+add_product()
+
+
+update_product()
+
+
+delete_product()
+
+
+search_product()
+
+
+list_products()
+
+
+Her metod kullanıcıya işlem sonucu hakkında açıklayıcı bir mesaj döndürsün.
+
+
+Parametre olarak gönderilen bir cümlede kaç adet kelime olduğunu bulan bir fonksiyon yazınız.
+
+
+2 karakterden küçük veya eşit olan kelimeler sayılmayacaktır.
+
+
+Fonksiyonun adı word_count() olacaktır.
+
+
+
+
+Kullanıcının girdiği bir cümlede "python" kelimesinin geçip geçmediğini kontrol eden bir fonksiyon yazınız.
+
+
+Büyük/küçük harf duyarsız çalışmalıdır.
+
+
+Sonuç olarak True veya False döndürmelidir.
+
+
+
+
+NumPy kullanarak 1 ile 100 arasında rastgele sayılar üreten bir dizi oluşturunuz.
+Daha sonra aşağıdaki işlemleri yapınız:
+
+
+Diziyi küçükten büyüğe sıralayınız
+
+
+Büyükten küçüğe sıralayınız
+
+
+Medyan değerini bulunuz
+
+
+Varyans değerini hesaplayınız
+
+
+
+
+np.argmax() ve klasik for döngüsü kullanarak bir dizideki en büyük elemanın indeksini bulan iki farklı yöntem geliştiriniz.
+
+
+Her iki yöntemin çalışma süresini time modülü ile ölçünüz.
+
+
+Sonuçları karşılaştırınız.
+
+
+
+
+Aşağıdaki sipariş bilgilerini kullanarak bir Pandas DataFrame oluşturunuz:
+
+
+siparis_id
+
+
+musteri_id
+
+
+urun
+
+
+fiyat
+
+
+adet
+
+
+durum
+
+
+Daha sonra:
+
+
+Toplam sipariş sayısını bulunuz
+
+
+Ortalama ürün fiyatını hesaplayınız
+
+
+“Teslim” durumundaki siparişleri listeleyiniz.
+
+
+
+
+Pandas Series kullanarak en az 5 ürün ve fiyat bilgisini tutan bir yapı oluşturunuz.
+Ardından:
+
+
+Ortalama fiyatı bulunuz
+
+
+En pahalı ürünü gösteriniz
+
+
+200 TL üzerindeki ürünleri filtreleyiniz.
+
+
+
+
+İki farklı NumPy array oluşturunuz ve aşağıdaki karşılaştırmaları yapınız:
+
+
+> operatörü
+
+
+< operatörü
+
+
+== operatörü
+
+
+Sonuçların neden True veya False döndürdüğünü açıklayınız.
+
+
+Customer isminde bir sınıf oluşturunuz.
+Bu sınıfta müşteri ekleme, güncelleme, silme, arama ve listeleme işlemleri yapılsın.
+Daha sonra bu sınıftan bir nesne üretip tüm metotları örnek veriler ile çalıştırınız.
+
