@@ -40,7 +40,7 @@ siparis_id,musteri_adi,sehir,fiyat,adet,tarih,kategori
 10039,Mehmet  Demir,bursa,1173.2,4,2024-01-05 18:00:00,?
 10040, Fatma Şahin,Istanbul,3365.58,8,2024-01-05 21:00:00,?
 10041,ahmet yılmaz,istanbul,2213.9,7,2024-01-06 00:00:00,Ev
-10042,AYŞE KAYA,Ankara,4171.76,8,2024-01-06 03:00:00,Giyim
+10042,AYŞE KAYA,Ankara,4171.76,8,2024-01-06 03:00:00,Giy
 10043,Mehmet  Demir,İZMİR,3516.31,4,2024-01-06 06:00:00,Elektronik
 10044, Fatma Şahin,bursa,1596.21,4,2024-01-06 09:00:00,Ev
 10045,ahmet yılmaz,Istanbul,4169.69,7,2024-01-06 12:00:00,Giyim
@@ -105,7 +105,7 @@ siparis_id,musteri_adi,sehir,fiyat,adet,tarih,kategori
 10104, Fatma Şahin,bursa,4847.42,2,2024-01-13 21:00:00,Giyim
 10105,ahmet yılmaz,Istanbul,3904.82,3,2024-01-14 00:00:00,Elektronik
 10106,AYŞE KAYA,istanbul,3598.61,2,2024-01-14 03:00:00,N/A
-10107,Mehmet  Demir,Ankara,2274.34,3,2024-01-14 06:00:00,Elektronik
+10107,Mehmet  Demir,Ankara,2274.34,3,2024-01-14 06:00:00,Elenik
 10108, Fatma Şahin,İZMİR,1397.6,9,2024-01-14 09:00:00,Ev
 10109,ahmet yılmaz,bursa,527.14,9,2024-01-14 12:00:00,Giyim
 10110,AYŞE KAYA,Istanbul,4517.88,1,2024-01-14 15:00:00,Elektronik
@@ -142,14 +142,14 @@ siparis_id,musteri_adi,sehir,fiyat,adet,tarih,kategori
 10141,ahmet yılmaz,istanbul,2458.96,8,2024-01-18 12:00:00,?
 10142,AYŞE KAYA,Ankara,2479.0,4,2024-01-18 15:00:00,Elektronik
 10143,Mehmet  Demir,İZMİR,4692.24,9,2024-01-18 18:00:00,Ev
-10144, Fatma Şahin,bursa,2880.05,8,2024-01-18 21:00:00,Ev
+10144, Fatma Şahin,bursa,2880.05,8,2024-01-18 21:00:00,Evcil
 10145,,Istanbul,2393.77,3,2024-01-19 00:00:00,Elektronik
 10146,AYŞE KAYA,istanbul,1371.53,5,2024-01-19 03:00:00,Giyim
 10147,Mehmet  Demir,Ankara,1691.27,5,2024-01-19 06:00:00,Giyim
 10148, Fatma Şahin,İZMİR,2627.33,7,2024-01-19 09:00:00,?
 10149,ahmet yılmaz,bursa,2222.61,7,2024-01-19 12:00:00,N/A
 10150,AYŞE KAYA,Istanbul,156.98,8,2024-01-19 15:00:00,N/A
-10151,Mehmet  Demir,istanbul,4140.15,4,2024-01-19 18:00:00,Elektronik
+10151,Mehmet  Demir,istanbul,4140.15,4,2024-01-19 18:00:00,Elronik
 10152,,Ankara,,5,2024-01-19 21:00:00,Elektronik
 10153,ahmet yılmaz,İZMİR,744.23,4,2024-01-20 00:00:00,Elektronik
 10154,AYŞE KAYA,bursa,2792.48,9,2024-01-20 03:00:00,Ev
