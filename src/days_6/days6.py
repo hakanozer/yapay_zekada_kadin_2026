@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -187,10 +189,11 @@ class ML:
 
         return worst5
 
-    
+""""  
 if __name__ == "__main__":
     ml = ML()
     df = ml.load_csv()
     ml.train_model(df)
     ml.predict_top_spenders_next_30_days(df)
     ml.predict_no_spenders_next_30_days(df)
+"""
