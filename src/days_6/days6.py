@@ -112,16 +112,7 @@ class ML:
             ascending=False
         ).head(5)
 
-        print("\nÖnümüzdeki 30 gün için en yüksek harcama tahmini:")
-        print(
-            top5[
-                [
-                    "musteri_adi",
-                    "gelecek_30_gun_tahmin"
-                ]
-            ]
-        )
-        # top5 datasını gelecekte_en_cok_harcama_yapan_5_musteri.png dosyasına görselleştirme olarak kaydet
+        pngName = "30_gun_icinde_en_cok_harcama_yapan_5_musteri.png"
         plt.figure(figsize=(10, 6))
         sns.barplot(
             data=top5,
@@ -134,14 +125,23 @@ class ML:
         plt.ylabel("Harcama Tahmini")
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.savefig("data/processed/30_gun_icinde_en_cok_harcama_yapan_5_musteri.png")
-        return top5
+        plt.savefig("data/processed/"+ pngName)
+        
+        png1 = "en_cok_harcama_yapilan_musteriler.png"
+        png2 = "ortalama_fiyat_kategori.png"
+        
+        returnObj = {
+            "success": True,
+            "images": [pngName, png1, png2],
+            "data": top5.to_dict(orient="records")
+        }
+        return returnObj
+        
     
     # makine öğrenmesi ile önümüzdeki 30 gün içinde hiç harcama yapmayacak müşterileri tahmin etme
     def predict_no_spenders_next_30_days(self, df):
         
         no_spenders = self.train_model(df)
-        # no_spenders datasını gelecekte_harcama_yapmayacak_musteriler.png dosyasına görselleştirme olarak kaydet
         plt.figure(figsize=(10, 6))
         sns.barplot(
             data=no_spenders,
@@ -154,8 +154,15 @@ class ML:
         plt.ylabel("Harcama Yapmama Olasılığı")
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.savefig("data/processed/gelecekte_harcama_yapmayacak_musteriler.png")
-        return no_spenders
+        pngName = "gelecekte_harcama_yapmayacak_musteriler.png"
+        plt.savefig("data/processed/"+ pngName)
+        
+        returnObj = {
+            "success": True,
+            "images": [pngName],
+            "data": no_spenders.to_dict(orient="records")
+        }
+        return returnObj
     
     def train_model(self, df):
         df["tarih"] = pd.to_datetime(df["tarih"], format="%d-%m-%Y %H:%M:%S")
@@ -188,6 +195,8 @@ class ML:
         print(worst5[["musteri_adi", "prob_not_buy"]])
 
         return worst5
+    
+    
 
 """"  
 if __name__ == "__main__":

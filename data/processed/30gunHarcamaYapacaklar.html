@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>30 Gun Harcama Yapacaklar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <style>
+    :root {
+      --page-bg-1: #f7f9fc;
+      --page-bg-2: #eef4ff;
+      --card-bg: #ffffff;
+      --title-color: #0b3d91;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, var(--page-bg-1), var(--page-bg-2));
+    }
+
+    .page-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 12px 28px rgba(18, 38, 63, 0.1);
+    }
+
+    .table thead th {
+      white-space: nowrap;
+    }
+
+    .status-text {
+      min-height: 1.5rem;
+    }
+
+    .chart-trigger {
+      cursor: zoom-in;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4 py-md-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-11">
+        <div class="page-card p-3 p-md-4">
+          <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-3">
+            <div>
+              <h1 class="h3 mb-1" style="color: var(--title-color);">30 Gun Icinde Harcama Yapacak Musteriler</h1>
+              <p class="text-secondary mb-0">Kaynak: /ml/30gunHarcamaYapacaklar</p>
+            </div>
+            <button id="refreshBtn" class="btn btn-primary">Veriyi Yenile</button>
+          </div>
+
+          <div id="statusText" class="status-text text-secondary mb-3">Veri yukleniyor...</div>
+
+          <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Musteri Adi</th>
+                  <th scope="col">Toplam Siparis</th>
+                  <th scope="col">Toplam Harcama (TL)</th>
+                  <th scope="col">Ortalama Harcama (TL)</th>
+                  <th scope="col">Son Siparis</th>
+                  <th scope="col">Gun Farki</th>
+                  <th scope="col">Gelecek 30 Gun Tahmini (TL)</th>
+                </tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+
+          <hr class="my-4" />
+          <div>
+            <h2 class="h5 mb-3">Grafikler</h2>
+            <div id="imagesStatus" class="status-text text-secondary mb-3">Grafikler yukleniyor...</div>
+            <div id="imagesGrid" class="row g-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title h5" id="imagePreviewLabel">Grafik Onizleme</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <img id="modalPreviewImage" src="" alt="Buyuk grafik" class="img-fluid w-100 rounded" />
+          <p id="modalPreviewName" class="text-secondary mt-2 mb-0 small"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script>
+    const ENDPOINT = "http://localhost:8000/ml/30gunHarcamaYapacaklar";
+    const rows = document.getElementById("rows");
+    const statusText = document.getElementById("statusText");
+    const imagesStatus = document.getElementById("imagesStatus");
+    const imagesGrid = document.getElementById("imagesGrid");
+    const refreshBtn = document.getElementById("refreshBtn");
+    const imagePreviewModal = new bootstrap.Modal(document.getElementById("imagePreviewModal"));
+    const modalPreviewImage = document.getElementById("modalPreviewImage");
+    const modalPreviewName = document.getElementById("modalPreviewName");
+
+    function formatCurrency(value) {
+      const numericValue = Number(value || 0);
+      return new Intl.NumberFormat("tr-TR", {
+        style: "currency",
+        currency: "TRY",
+        maximumFractionDigits: 2,
+      }).format(numericValue);
+    }
+
+    function formatDate(value) {
+      if (!value) return "-";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return new Intl.DateTimeFormat("tr-TR", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }).format(date);
+    }
+
+    function setStatus(message, type = "secondary") {
+      statusText.className = `status-text mb-3 text-${type}`;
+      statusText.textContent = message;
+    }
+
+    function setImagesStatus(message, type = "secondary") {
+      imagesStatus.className = `status-text mb-3 text-${type}`;
+      imagesStatus.textContent = message;
+    }
+
+    function buildRow(item) {
+      return `
+        <tr>
+          <td>${item.musteri_adi ?? "-"}</td>
+          <td>${item.toplam_siparis ?? 0}</td>
+          <td>${formatCurrency(item.toplam_harcama)}</td>
+          <td>${formatCurrency(item.ortalama_harcama)}</td>
+          <td>${formatDate(item.son_siparis)}</td>
+          <td>${item.gun_farki ?? "-"}</td>
+          <td>${formatCurrency(item.gelecek_30_gun_tahmin)}</td>
+        </tr>
+      `;
+    }
+
+    function buildImageCard(imageName) {
+      const safeName = String(imageName || "").trim();
+      const imageSrc = `./${encodeURIComponent(safeName)}`;
+
+      return `
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card h-100 shadow-sm border-0">
+            <button type="button" class="btn p-0 border-0 w-100 text-start chart-trigger" data-image-src="${imageSrc}" data-image-name="${safeName}">
+              <img src="${imageSrc}" class="card-img-top" alt="${safeName}" loading="lazy" onerror="this.closest('.card').remove();">
+            </button>
+            <div class="card-body py-2">
+              <p class="card-text small text-secondary mb-0 text-break">${safeName}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function openImageModal(imageSrc, imageName) {
+      modalPreviewImage.src = imageSrc;
+      modalPreviewImage.alt = imageName || "Buyuk grafik";
+      modalPreviewName.textContent = imageName || "";
+      imagePreviewModal.show();
+    }
+
+    async function loadData() {
+      setStatus("Veri yukleniyor...", "secondary");
+      refreshBtn.disabled = true;
+
+      try {
+        const response = await fetch(ENDPOINT);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        const data = Array.isArray(payload.data) ? payload.data : [];
+        const images = Array.isArray(payload.images) ? payload.images : [];
+
+        if (!payload.success) {
+          throw new Error("API success=false dondu");
+        }
+
+        if (data.length === 0) {
+          rows.innerHTML = "";
+          setStatus("Gosterilecek kayit bulunamadi.", "warning");
+        } else {
+          rows.innerHTML = data.map(buildRow).join("");
+          setStatus(`${data.length} kayit basariyla yuklendi.`, "success");
+        }
+
+        if (images.length === 0) {
+          imagesGrid.innerHTML = "";
+          setImagesStatus("Gosterilecek grafik bulunamadi.", "warning");
+        } else {
+          imagesGrid.innerHTML = images.map(buildImageCard).join("");
+          setImagesStatus(`${images.length} grafik basariyla yuklendi.`, "success");
+        }
+      } catch (error) {
+        rows.innerHTML = "";
+        imagesGrid.innerHTML = "";
+        setStatus(`Veri alinirken hata olustu: ${error.message}`, "danger");
+        setImagesStatus("Grafikler yuklenemedi.", "danger");
+      } finally {
+        refreshBtn.disabled = false;
+      }
+    }
+
+    imagesGrid.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-image-src]");
+      if (!trigger) return;
+
+      openImageModal(
+        trigger.getAttribute("data-image-src"),
+        trigger.getAttribute("data-image-name")
+      );
+    });
+
+    refreshBtn.addEventListener("click", loadData);
+    loadData();
+  </script>
+</body>
+</html>
