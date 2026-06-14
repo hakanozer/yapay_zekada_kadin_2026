@@ -8,7 +8,7 @@ Gemini Free API kullanarak kullanıcıların CSV, JSON veya Excel formatında ve
 
 ## Gemini API Kullanım Detayları
 curl --location 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent' \
---header 'x-goog-api-key: AQ.Ab8RN6IwmaWtdBtoRRdtWIaR5FcWaKsbY3NA81kfxCibOn2tsA' \
+# --header 'x-goog-api-key: {API_KEY}' \
 --header 'Content-Type: application/json' \
 --data '{
     "contents": [
