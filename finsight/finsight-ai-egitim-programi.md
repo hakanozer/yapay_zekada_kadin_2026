@@ -293,16 +293,33 @@ finsight-ai/
 ### Veri Seti Şartnamesi
 Minimum kolon şeması (öğrenciler isterlerse ek kolon türetebilir):
 
-| Kolon | Tip | Açıklama |
-|---|---|---|
-| `siparis_id` | int | Benzersiz sipariş numarası |
-| `musteri_adi` | string | Müşteri adı |
-| `sehir` | string | Sipariş edilen şehir |
-| `fiyat` | float | Birim fiyat |
-| `adet` | int | Adet |
-| `tarih` | datetime | Sipariş tarihi (`gg-aa-yyyy ss:dd:ss`) |
-| `kategori` | string | Ürün kategorisi |
-| `toplam_harcama` | float | `fiyat × adet` |
+| Kolon              | Tip      | Açıklama                               |
+| ------------------ | -------- | -------------------------------------- |
+| `siparis_id`       | int      | Benzersiz sipariş numarası             |
+| `musteri_id`       | int      | Benzersiz müşteri numarası             |
+| `musteri_adi`      | string   | Müşteri adı                            |
+| `cinsiyet`         | string   | Erkek / Kadın                          |
+| `yas`              | int      | Müşteri yaşı                           |
+| `sehir`            | string   | Sipariş edilen şehir                   |
+| `ilce`             | string   | İlçe bilgisi                           |
+| `urun_id`          | int      | Ürün numarası                          |
+| `urun_adi`         | string   | Ürün adı                               |
+| `kategori`         | string   | Ürün kategorisi                        |
+| `marka`            | string   | Ürün markası                           |
+| `fiyat`            | float    | Birim fiyat                            |
+| `adet`             | int      | Satın alınan ürün miktarı              |
+| `indirim_orani`    | float    | Uygulanan indirim yüzdesi              |
+| `kargo_ucreti`     | float    | Kargo bedeli                           |
+| `odeme_tipi`       | string   | Kredi Kartı, Havale, Kapıda Ödeme vb.  |
+| `siparis_durumu`   | string   | Tamamlandı, İptal, İade                |
+| `tarih`            | datetime | Sipariş tarihi (`gg-aa-yyyy ss:dd:ss`) |
+| `teslim_tarihi`    | datetime | Sipariş teslim tarihi                  |
+| `toplam_harcama`   | float    | `(fiyat × adet) - indirim + kargo`     |
+| `musteri_puani`    | float    | Müşteri memnuniyet puanı (1-5)         |
+| `sadakat_seviyesi` | string   | Bronze, Silver, Gold, Platinum         |
+| `kampanya_kodu`    | string   | Kullanılan kampanya kodu               |
+| `urun_puani`       | float    | Ürün değerlendirme puanı               |
+| `yorum_sayisi`     | int      | Ürüne yapılan yorum sayısı             |
 
 ### Faz Faz Gereksinimler ve Teslim Kriterleri
 

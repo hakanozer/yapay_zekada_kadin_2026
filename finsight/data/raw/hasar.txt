@@ -1,0 +1,31 @@
++-------------------+----------------+--------------------------------------------------------------+
+| Kolon             | Problem Sayısı | Problem Türleri                                             |
++-------------------+----------------+--------------------------------------------------------------+
+| siparis_id        | 20             | Yinelenen kayıt                                             |
+| musteri_id        | 15             | Eksik veri                                                  |
+| musteri_adi       | 45             | Eksik veri (20), Büyük/Küçük harf (25)                     |
+| cinsiyet          | 45             | Büyük/Küçük harf/kısaltma (30), Eksik veri (15)            |
+| yas               | 40             | Aykırı değer (25), Eksik veri (15)                         |
+| sehir             | 55             | Büyük/Küçük harf (35), Eksik veri (20)                     |
+| ilce              | 45             | Eksik veri (30), Büyük/Küçük harf (15)                     |
+| urun_id           | 10             | Eksik veri                                                  |
+| urun_adi          | 30             | Eksik veri (15), Büyük/Küçük harf (15)                     |
+| kategori          | 50             | Boş kategori (35), Büyük/Küçük harf (15)                   |
+| marka             | 35             | Büyük/Küçük harf (20), Eksik veri (15)                     |
+| fiyat             | 50             | Negatif fiyat (25), Eksik veri (15), Aykırı değer (10)     |
+| adet              | 45             | Aykırı değer (20), Negatif (15), Eksik veri (10)           |
+| indirim_orani     | 35             | Aykırı değer >100/negatif (20), Eksik veri (15)            |
+| kargo_ucreti      | 35             | Negatif değer (20), Eksik veri (15)                        |
+| odeme_tipi        | 35             | Büyük/Küçük harf (20), Eksik veri (15)                     |
+| siparis_durumu    | 30             | Büyük/Küçük harf (20), Eksik veri (10)                     |
+| tarih             | 55             | Hatalı tarih (25), Eksik veri (15), Format karışıklığı (15)|
+| teslim_tarihi     | 45             | Mantıksız tarih (25), Eksik veri (20)                      |
+| toplam_harcama    | 55             | Hesap hatası (30), Eksik veri (15), Negatif (10)           |
+| musteri_puani     | 40             | Aykırı değer 1-5 dışı (25), Eksik veri (15)                |
+| sadakat_seviyesi  | 45             | Büyük/Küçük harf (20), Eksik veri (15), Geçersiz değer (10)|
+| kampanya_kodu     | 25             | Format tutarsızlığı (boşluk/case/ek karakter)              |
+| urun_puani        | 35             | Aykırı değer 1-5 dışı (20), Eksik veri (15)                |
+| yorum_sayisi      | 35             | Negatif (15), Aykırı yüksek değer (10), Eksik veri (10)    |
++-------------------+----------------+--------------------------------------------------------------+
+
+TOPLAM: 955 / 25.000 hücre = %3,82
