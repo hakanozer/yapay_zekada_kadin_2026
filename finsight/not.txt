@@ -1,0 +1,11 @@
+// klasör ve dosyaları tek sefereda oluşturma
+mkdir -p app/routes data/raw data/processed templates static && \
+touch app/{main.py,config.py,models.py,data_cleaning.py,analytics.py,ml_engine.py,gemini_client.py} && \
+touch app/routes/{dataRouter.py,mlRouter.py,userRouter.py} && \
+touch templates/index.html && \
+touch static/{app.js,style.css}
+
+// __init__.py dosyalarını oluşturma
+touch app/__init__.py \
+      app/routes/__init__.py \
+      data/__init__.py
